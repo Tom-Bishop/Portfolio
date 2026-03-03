@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neave Heaton | Senior Marketing Officer",
-  description: "Strategic marketing portfolio showcasing integrated campaigns for arts, heritage, and educational institutions. Senior Marketing Officer specializing in cultural marketing and audience engagement.",
+  title: "Tom Baptist | Apprentice Cyber Security Engineer",
+  description: "Cyber security portfolio focused on ICS/OT security, network defence, and practical operational resilience work.",
 };
 
 export default function RootLayout({

@@ -6,17 +6,15 @@ import {
   FiBarChart2,
   FiCheckCircle,
   FiFileText,
-  FiInstagram,
   FiLayers,
   FiLinkedin,
   FiMail,
   FiStar,
-  FiTwitter,
 } from "react-icons/fi";
 
 type PortfolioItem = {
   project: string;
-  category: "Campaign" | "Strategy" | "Content" | "Events";
+  category: "ICS/OT" | "Network" | "Governance" | "Labs";
   summary: string;
   result: string;
 };
@@ -25,80 +23,80 @@ type SubmitState = "idle" | "sending" | "sent" | "error";
 
 const portfolioItems: PortfolioItem[] = [
   {
-    project: "Durham Fringe Festival Digital Rebrand",
-    category: "Strategy",
-    summary: "Led comprehensive digital communications strategy for Durham's flagship arts festival, establishing consistent brand voice across all platforms.",
-    result: "40% increase in digital reach across channels",
+    project: "ICS/OT Security Baseline Review",
+    category: "ICS/OT",
+    summary: "Assisted with baseline reviews for industrial and operational environments, documenting assets, exposures, and high-priority remediation actions.",
+    result: "Improved visibility of critical OT assets and risks",
   },
   {
-    project: "Auckland Project Heritage Marketing Campaign",
-    category: "Campaign",
-    summary: "Developed integrated marketing strategy for major cultural heritage organization, positioning contemporary art within historic narrative.",
-    result: "+58% visitor acquisition YoY",
+    project: "Network Security Monitoring Support",
+    category: "Network",
+    summary: "Supported monitoring and investigation workflows across network security tooling, escalating suspicious patterns and improving analyst handover quality.",
+    result: "Faster triage with clearer investigation notes",
   },
   {
-    project: "Cathedral Schools Foundation Communications",
-    category: "Content",
-    summary: "Built editorial content strategy and managed digital communications for networked independent schools and cathedral foundation.",
-    result: "120+ stories published; 65% email open rate",
+    project: "Vulnerability & Patch Tracking Workflow",
+    category: "Governance",
+    summary: "Contributed to vulnerability review and remediation tracking, helping prioritize issues by severity and business impact.",
+    result: "More consistent patch tracking and follow-through",
   },
   {
-    project: "Cultural Events Social Management",
-    category: "Events",
-    summary: "Managed full-cycle marketing for arts events, from audience research through post-event analysis and reporting.",
-    result: "Avg. 45% ticket conversion from digital",
+    project: "Security Awareness & Phishing Guidance",
+    category: "Governance",
+    summary: "Helped create practical guidance for user awareness and secure behavior, translating technical risks into clear internal messaging.",
+    result: "Better end-user understanding of common threats",
   },
   {
-    project: "Digital Communications Framework",
-    category: "Strategy",
-    summary: "Designed reusable digital marketing systems, brand guidelines, and content frameworks for scaling cultural organization communications.",
-    result: "35% faster campaign deployment",
+    project: "Home Lab: Detection & Hardening Exercises",
+    category: "Labs",
+    summary: "Built a personal lab to practice network hardening, log analysis, and incident response scenarios aligned with Security+ objectives.",
+    result: "Stronger practical blue-team foundations",
   },
 ];
 
 const testimonials = [
   {
-    name: "Sarah Mitchell",
-    role: "Director, The Auckland Project",
-    quote: "Neave brought strategic clarity and creative vision to our marketing. Her cultural sensitivity and data literacy are exceptional.",
+    name: "Team Feedback",
+    role: "Tekgem UK LTD",
+    quote: "Tom consistently approaches security tasks with precision, strong documentation, and a clear focus on reducing operational risk.",
   },
   {
-    name: "James Turner",
-    role: "Festival Director, Durham Fringe",
-    quote: "Transformative work on our digital presence. Neave understands how to tell stories that resonate with arts audiences.",
+    name: "Mentor Perspective",
+    role: "Cyber Security Training",
+    quote: "A dependable apprentice with growing ICS/OT awareness, solid fundamentals, and a professional approach to continuous learning.",
   },
 ];
 
 const templates = [
   {
-    title: "Festival Campaign Brief",
-    description: "Comprehensive framework for planning integrated cultural event marketing with audience personas, messaging hierarchy, and channel strategy.",
-    format: "Reference: Strategy Doc",
+    title: "ICS/OT Asset Risk Checklist",
+    description: "Structured checklist for identifying critical assets, trust boundaries, and immediate security controls in operational environments.",
+    format: "Template: Assessment Sheet",
   },
   {
-    title: "Heritage Content Editorial Calendar",
-    description: "12-month editorial planning doc balancing institutional announcements, storytelling, audience engagement, and seasonal moments.",
-    format: "Template: Sheets/Notion",
+    title: "Alert Triage Notes Template",
+    description: "Repeatable format for documenting investigations, evidence points, severity, and escalation actions for security events.",
+    format: "Template: Incident Notes",
   },
   {
-    title: "Stakeholder Communications Report",
-    description: "Executive-level monthly reporting covering reach metrics, audience sentiment analysis, and strategic recommendations.",
-    format: "Template: Slides",
+    title: "Security Posture Update Snapshot",
+    description: "Simple internal report format for open vulnerabilities, remediation status, and upcoming hardening priorities.",
+    format: "Template: Weekly Report",
   },
 ];
 
 const examples = [
   {
-    title: "Arts Festival Campaign",
-    sample: "Multi-channel campaign positioning independent artists, with audience journey from awareness through ticket conversion.",
+    title: "OT Network Segmentation Review",
+    sample: "Practical review of control network zones, firewall rules, and access pathways to reduce unnecessary exposure.",
   },
   {
-    title: "Heritage Site Digital Story",
-    sample: "Editorial narrative combining archival research, contemporary art, and visitor experience positioning across social and email.",
+    title: "Vulnerability Prioritization Summary",
+    sample: "Prioritized remediation list based on CVSS, exploitability, and operational impact for clearer patching decisions.",
   },
   {
-    title: "Educational Institution Announcement",
-    sample: "Coordinated communications brief for student, parent, and alumni audiences with tailored messaging and channel strategy.",
+    title: "Security Awareness Brief",
+    sample: "Concise user guidance covering phishing indicators, password hygiene, and incident reporting pathways.",
   },
 ];
 
@@ -107,7 +105,7 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const categories: Array<PortfolioItem["category"] | "All"> = ["All", "Campaign", "Strategy", "Content", "Events"];
+const categories: Array<PortfolioItem["category"] | "All"> = ["All", "ICS/OT", "Network", "Governance", "Labs"];
 
 export function PortfolioSite() {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
@@ -189,13 +187,10 @@ export function PortfolioSite() {
           transition={{ duration: 0.45 }}
           className="mb-16 flex flex-wrap items-center justify-between gap-6"
         >
-          <p className="text-lg font-semibold tracking-tight">Neave Heaton · Senior Marketing Officer</p>
+          <p className="text-lg font-semibold tracking-tight">Tom Baptist · Apprentice Cyber Security Engineer</p>
           <div className="flex items-center gap-4 text-xl">
-            <a aria-label="LinkedIn" href="https://linkedin.com/in/neave-heaton-3289a21b9/" target="_blank" rel="noopener noreferrer" className="transition hover:opacity-70">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/tom-b-a81271132" target="_blank" rel="noopener noreferrer" className="transition hover:opacity-70">
               <FiLinkedin />
-            </a>
-            <a aria-label="Twitter" href="#" className="transition hover:opacity-70">
-              <FiTwitter />
             </a>
           </div>
         </motion.nav>
@@ -209,30 +204,30 @@ export function PortfolioSite() {
         >
           <div>
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-4 py-1 text-sm text-amber-700">
-              <FiStar /> Arts & Heritage Marketing
+              <FiStar /> ICS & OT Security Focus
             </p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Cultural narratives, strategic marketing, meaningful audiences.
+              Securing critical systems with practical, detail-driven cyber defence.
             </h1>
             <p className="mt-6 max-w-2xl text-base text-slate-700 sm:text-lg">
-              I am a Senior Marketing Officer specializing in arts, heritage, and educational institutions. I develop integrated marketing strategies that authentically connect communities with cultural work.
+              I am an Apprentice Cyber Security Engineer at Tekgem UK LTD, focused on Industrial Control Systems (ICS) and Operational Technology (OT) security, network defence, and continuous improvement.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#portfolio" className="rounded-full bg-indigo-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-800">
-                View Work
+                View Projects
               </a>
               <a href="#contact" className="rounded-full border border-amber-300 bg-white px-6 py-3 text-sm font-medium text-amber-800 transition hover:bg-amber-50">
-                Start a Conversation
+                Contact Me
               </a>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
             {[
-              ["3", "Major Arts Organizations"],
-              ["50+", "Integrated Campaigns"],
-              ["6 Years", "Cultural Marketing"],
-              ["First-Class", "Honours Degree"],
+              ["1+", "Years in Cyber Apprenticeship"],
+              ["CompTIA", "Security+ Certified"],
+              ["19", "Core Security Skills"],
+              ["12", "Search Appearances (7 Days)"],
             ].map(([value, label], index) => (
               <motion.div
                 key={label}
@@ -252,7 +247,7 @@ export function PortfolioSite() {
       <section id="portfolio" className="mx-auto max-w-6xl px-6 py-14 sm:px-10 lg:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
           <h2 className="text-3xl font-semibold tracking-tight">Portfolio Highlights</h2>
-          <p className="mt-3 text-slate-700">Selected work across cultural marketing strategy, campaign delivery, content, and events.</p>
+          <p className="mt-3 text-slate-700">Selected cyber security work focused on ICS/OT resilience, network defence, governance, and practical lab-based development.</p>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -293,7 +288,7 @@ export function PortfolioSite() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 py-14 sm:px-10 lg:grid-cols-2 lg:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-          <h2 className="text-3xl font-semibold tracking-tight">Strategic Frameworks</h2>
+          <h2 className="text-3xl font-semibold tracking-tight">Security Frameworks</h2>
           <div className="mt-6 space-y-4">
             {templates.map((template, index) => (
               <motion.article
@@ -315,7 +310,7 @@ export function PortfolioSite() {
         </motion.div>
 
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={fadeInUp} transition={{ duration: 0.45, delay: 0.05 }}>
-          <h2 className="text-3xl font-semibold tracking-tight">Case Examples</h2>
+          <h2 className="text-3xl font-semibold tracking-tight">Use Cases</h2>
           <div className="mt-6 space-y-3">
             {examples.map((example) => (
               <article key={example.title} className="rounded-2xl border border-white bg-white p-5 shadow-sm">
@@ -338,23 +333,23 @@ export function PortfolioSite() {
           transition={{ duration: 0.45 }}
           className="rounded-3xl bg-indigo-900 p-7 text-indigo-50"
         >
-          <h2 className="text-2xl font-semibold tracking-tight">How I Approach Marketing</h2>
+          <h2 className="text-2xl font-semibold tracking-tight">How I Approach Security</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             {[
               {
                 icon: FiCheckCircle,
-                title: "Research & Insight",
-                text: "Deep audience analysis, competitive positioning, and stakeholder interviews to inform strategy.",
+                title: "Assess & Baseline",
+                text: "Identify critical assets, access pathways, and high-risk weaknesses across IT and OT environments.",
               },
               {
                 icon: FiStar,
-                title: "Strategic Planning",
-                text: "Integrated campaign frameworks, messaging architecture, and channel strategy tailored to audience segments.",
+                title: "Harden & Document",
+                text: "Apply practical controls, improve configurations, and maintain clear documentation for repeatable security operations.",
               },
               {
                 icon: FiBarChart2,
-                title: "Measure & Learn",
-                text: "Continuous performance tracking, quarterly strategic reviews, and data-informed optimization.",
+                title: "Monitor & Improve",
+                text: "Track findings, triage alerts, and feed lessons learned into stronger prevention and response workflows.",
               },
             ].map((step) => (
               <article key={step.title} className="rounded-2xl border border-indigo-700 p-4">
@@ -370,7 +365,7 @@ export function PortfolioSite() {
 
       <section className="mx-auto max-w-6xl px-6 py-10 sm:px-10 lg:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.25 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-          <h2 className="text-3xl font-semibold tracking-tight">Recommendations</h2>
+          <h2 className="text-3xl font-semibold tracking-tight">Professional Feedback</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {testimonials.map((testimonial, index) => (
               <motion.blockquote
@@ -394,12 +389,12 @@ export function PortfolioSite() {
       <section id="contact" className="mx-auto max-w-6xl px-6 py-16 sm:px-10 lg:px-12">
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-            <h2 className="text-3xl font-semibold tracking-tight">Let's Work Together</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">Open to Cyber Opportunities</h2>
             <p className="mt-3 max-w-xl text-slate-700">
-              I'm always interested in culturally-focused organizations looking to develop integrated marketing strategies. Let me know your vision and timeline.
+              I am open to cyber security opportunities and collaborations, especially roles involving ICS/OT security, network defence, and operational resilience.
             </p>
-            <a href="mailto:neave.heaton@theaucklandproject.com" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-indigo-800 hover:opacity-80">
-              <FiMail /> neave.heaton@theaucklandproject.com
+            <a href="mailto:tom@jogn.co.uk" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-indigo-800 hover:opacity-80">
+              <FiMail /> tom@jogn.co.uk
             </a>
           </motion.div>
 
@@ -414,8 +409,8 @@ export function PortfolioSite() {
           >
             <input name="name" required placeholder="Name" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
             <input name="email" type="email" required placeholder="Email" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <input name="projectType" required placeholder="Organization Type" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <textarea name="message" required placeholder="Tell me about your organization and goals" rows={4} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
+            <input name="projectType" required placeholder="Role / Project Type" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
+            <textarea name="message" required placeholder="Tell me about the role, project, or security challenge" rows={4} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
             <button type="submit" disabled={contactStatus === "sending"} className="w-full rounded-full bg-indigo-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-60">
               {contactStatus === "sending" ? "Sending..." : "Send Message"}
             </button>
@@ -437,7 +432,7 @@ export function PortfolioSite() {
             name="newsletterEmail"
             type="email"
             required
-            placeholder="Enter email for cultural marketing insights"
+            placeholder="Enter email for cyber security notes and updates"
             className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300"
           />
           <button
