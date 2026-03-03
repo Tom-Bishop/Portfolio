@@ -188,7 +188,7 @@ export function PortfolioSite() {
             transition={{ duration: 0.4 }}
             className="mb-10 flex items-center justify-between"
           >
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Tom Baptist · OT Security Portfolio</p>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-300">Tom Baptist · SOC / SIEM OT Console</p>
             <a aria-label="LinkedIn" href="https://www.linkedin.com/in/tom-b-a81271132" target="_blank" rel="noopener noreferrer" className="text-xl text-slate-200 transition hover:text-cyan-300">
               <FiLinkedin />
             </a>
@@ -197,28 +197,28 @@ export function PortfolioSite() {
           <motion.div initial="hidden" animate="visible" variants={fadeInUp} transition={{ duration: 0.5 }} className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
             <div className="rounded-3xl border border-cyan-500/20 bg-slate-950/60 p-7 shadow-[0_0_32px_rgba(34,211,238,0.08)]">
               <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-cyan-400/40 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-cyan-200">
-                <FiStar /> Industrial Control System Focus
+                <FiStar /> SOC Monitoring | SIEM Detection | OT Threat Hunting
               </p>
-              <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Defending OT environments through practical cyber operations.</h1>
+              <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">Operational technology defence through a SOC / SIEM mindset.</h1>
               <p className="mt-5 max-w-2xl text-slate-300">
-                Apprentice Cyber Security Engineer at Tekgem UK LTD, developing OT-first security capabilities across asset discovery, segmentation review, detection support, and operational risk reduction.
+                Apprentice Cyber Security Engineer at Tekgem UK LTD, focused on OT-aware detection, triage quality, and practical incident response support across industrial and enterprise environments.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a href="#portfolio" className="rounded-xl border border-cyan-400/40 bg-cyan-500/20 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-500/30">
-                  Explore OT Work
+                  View Detection Cases
                 </a>
                 <a href="#contact" className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-5 py-3 text-sm font-medium text-emerald-200 transition hover:bg-emerald-500/20">
-                  Discuss Opportunities
+                  Open Contact Channel
                 </a>
               </div>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
               {[
-                ["Current Role", "Apprentice Cyber Security Engineer"],
-                ["Specialism", "ICS / OT Security"],
-                ["Certification", "CompTIA Security+"],
-                ["Priority", "Operational Resilience"],
+                ["SIEM Stack", "Detection + Triage Workflows"],
+                ["Coverage", "ICS / OT + Network Security"],
+                ["Cert Status", "CompTIA Security+ Active"],
+                ["Ops Priority", "Availability + Safety + Resilience"],
               ].map(([label, value], index) => (
                 <motion.div
                   key={label}
@@ -238,28 +238,28 @@ export function PortfolioSite() {
 
       <section className="mx-auto grid max-w-6xl gap-8 px-6 py-12 sm:px-10 lg:grid-cols-[300px_1fr] lg:px-12">
         <motion.aside initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }} className="h-fit rounded-2xl border border-cyan-500/20 bg-slate-950/70 p-5 lg:sticky lg:top-8">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-cyan-300">Operational Focus</h2>
+          <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-cyan-300">SOC Watchlist</h2>
           <ul className="mt-4 space-y-3 text-sm text-slate-300">
-            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2">OT asset visibility and classification</li>
-            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2">Segmentation and access boundary review</li>
-            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2">Vulnerability prioritization workflows</li>
-            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2">Alert triage and escalation quality</li>
+            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 font-mono">OT-ZONE-01: unauthorized route attempt</li>
+            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 font-mono">FW-EDGE: policy drift detected</li>
+            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 font-mono">SIEM: high-severity auth anomaly</li>
+            <li className="rounded-lg border border-slate-700 bg-slate-900/60 px-3 py-2 font-mono">PATCH-TRACK: overdue critical CVE</li>
           </ul>
 
-          <h3 className="mt-6 text-sm font-semibold uppercase tracking-[0.15em] text-emerald-300">Core Metrics</h3>
+          <h3 className="mt-6 text-sm font-semibold uppercase tracking-[0.15em] text-emerald-300">SOC Metrics</h3>
           <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">1+ year OT track</div>
-            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">Security+ certified</div>
-            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">19 security skills</div>
-            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">UK based</div>
+            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">MTTA trend ↓</div>
+            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">Security+ active</div>
+            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">Triage notes standardized</div>
+            <div className="rounded-lg border border-slate-700 bg-slate-900/60 p-2 text-slate-200">UK SOC-ready</div>
           </div>
         </motion.aside>
 
         <div className="space-y-10">
           <section id="portfolio">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-              <h2 className="text-3xl font-semibold tracking-tight">OT Security Project Stream</h2>
-              <p className="mt-2 text-slate-300">Filter projects by operational domain and review outcomes focused on practical security improvements.</p>
+              <h2 className="text-3xl font-semibold tracking-tight">Detection & Response Cases</h2>
+              <p className="mt-2 text-slate-300">Filter by domain to view SOC-style detection, triage, and OT risk-reduction outcomes.</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {categories.map((category) => (
@@ -291,8 +291,38 @@ export function PortfolioSite() {
                     <p className="text-xs font-semibold uppercase tracking-wide text-cyan-300">{item.category}</p>
                     <h3 className="mt-2 text-lg font-semibold text-slate-100">{item.project}</h3>
                     <p className="mt-2 text-sm text-slate-300">{item.summary}</p>
-                    <p className="mt-4 text-sm font-medium text-emerald-300">Impact: {item.result}</p>
+                    <p className="mt-4 text-sm font-medium text-emerald-300">Outcome: {item.result}</p>
                   </motion.article>
+                ))}
+              </div>
+            </motion.div>
+          </section>
+
+          <section>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={fadeInUp}
+              transition={{ duration: 0.45 }}
+              className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5"
+            >
+              <h2 className="text-2xl font-semibold tracking-tight">SIEM Telemetry Snapshot</h2>
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {[
+                  ["high", "OT anomaly correlation", "PLC auth pattern deviates from baseline"],
+                  ["medium", "Firewall drift", "Rule-set changed outside planned window"],
+                  ["low", "Endpoint hygiene", "Patch cycle completed with minor exceptions"],
+                ].map(([severity, signal, note]) => (
+                  <article key={signal} className="rounded-xl border border-slate-700 bg-slate-950/40 p-4">
+                    <p className={`text-xs font-semibold uppercase tracking-wide ${
+                      severity === "high" ? "text-rose-300" : severity === "medium" ? "text-amber-300" : "text-emerald-300"
+                    }`}>
+                      {severity}
+                    </p>
+                    <p className="mt-1 text-sm font-semibold text-slate-100">{signal}</p>
+                    <p className="mt-1 text-sm text-slate-300">{note}</p>
+                  </article>
                 ))}
               </div>
             </motion.div>
@@ -300,7 +330,7 @@ export function PortfolioSite() {
 
           <section className="grid gap-6 lg:grid-cols-2">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }} className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5">
-              <h2 className="text-2xl font-semibold tracking-tight">Security Frameworks</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">Playbooks & Runbooks</h2>
               <div className="mt-4 space-y-3">
                 {templates.map((template, index) => (
                   <motion.article
@@ -322,7 +352,7 @@ export function PortfolioSite() {
             </motion.div>
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45, delay: 0.05 }} className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5">
-              <h2 className="text-2xl font-semibold tracking-tight">Use Cases</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">SIEM Detection Samples</h2>
               <div className="mt-4 space-y-3">
                 {examples.map((example) => (
                   <article key={example.title} className="rounded-xl border border-slate-700 bg-slate-950/40 p-4">
@@ -338,23 +368,23 @@ export function PortfolioSite() {
 
           <section>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }} className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-6">
-              <h2 className="text-2xl font-semibold tracking-tight">Operational Security Cycle</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">SOC Workflow Loop</h2>
               <div className="mt-4 grid gap-3 md:grid-cols-3">
                 {[
                   {
                     icon: FiCheckCircle,
-                    title: "Baseline",
-                    text: "Map critical OT assets, dependencies, and trust boundaries.",
+                    title: "Ingest & Baseline",
+                    text: "Ingest telemetry, map OT assets, and establish normal operational behavior.",
                   },
                   {
                     icon: FiStar,
-                    title: "Control",
-                    text: "Apply controls and document repeatable operational safeguards.",
+                    title: "Triage & Investigate",
+                    text: "Correlate alerts, validate signal quality, and document investigation paths.",
                   },
                   {
                     icon: FiBarChart2,
-                    title: "Improve",
-                    text: "Monitor, learn, and continuously reduce operational cyber risk.",
+                    title: "Contain & Improve",
+                    text: "Escalate, contain, and feed findings back into stronger detection coverage.",
                   },
                 ].map((step) => (
                   <article key={step.title} className="rounded-xl border border-slate-700 bg-slate-950/40 p-4">
@@ -370,7 +400,7 @@ export function PortfolioSite() {
 
           <section>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-              <h2 className="text-2xl font-semibold tracking-tight">Professional Feedback</h2>
+              <h2 className="text-2xl font-semibold tracking-tight">Analyst Notes</h2>
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 {testimonials.map((testimonial, index) => (
                   <motion.blockquote
@@ -397,9 +427,9 @@ export function PortfolioSite() {
         <div className="mx-auto max-w-6xl px-6 py-14 sm:px-10 lg:px-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
-              <h2 className="text-3xl font-semibold tracking-tight">Open to Cyber Opportunities</h2>
+              <h2 className="text-3xl font-semibold tracking-tight">Open to SOC / OT Opportunities</h2>
               <p className="mt-3 max-w-xl text-slate-300">
-                Open to roles and projects focused on OT/ICS security, security operations, and infrastructure resilience in critical environments.
+                Open to SOC, SIEM, and OT security roles where detection engineering, triage discipline, and operational resilience are core priorities.
               </p>
               <a href="mailto:tom@jogn.co.uk" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:opacity-80">
                 <FiMail /> tom@jogn.co.uk
@@ -440,7 +470,7 @@ export function PortfolioSite() {
               name="newsletterEmail"
               type="email"
               required
-              placeholder="Enter email for OT security notes and updates"
+              placeholder="Enter email for SOC and SIEM notes"
               className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50"
             />
             <button
