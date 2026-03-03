@@ -25,40 +25,34 @@ type SubmitState = "idle" | "sending" | "sent" | "error";
 
 const portfolioItems: PortfolioItem[] = [
   {
-    project: "Community Growth Sprint",
-    category: "Social",
-    summary: "30-day content sprint for audience growth across Instagram and LinkedIn.",
-    result: "+126% follower growth",
-  },
-  {
-    project: "Launch Week Funnel",
+    project: "British Heritage Seasonal Campaigns",
     category: "Campaign",
-    summary: "Cross-channel launch campaign from teaser content to conversion-focused assets.",
-    result: "5.1x ROAS",
+    summary: "Planned and ran multi-phase campaigns for British heritage sites across peak visitor periods.",
+    result: "+44% event attendance uplift",
   },
   {
-    project: "Short-Form Video Lab",
+    project: "Heritage & Schools Social Management",
+    category: "Social",
+    summary: "Managed Instagram and Facebook channels for heritage organisations and schools with weekly publishing calendars.",
+    result: "+61% engagement rate growth",
+  },
+  {
+    project: "School Admissions Awareness Push",
+    category: "Campaign",
+    summary: "Campaign strategy and paid/organic support focused on admissions and open-day awareness.",
+    result: "+37% enquiry submissions",
+  },
+  {
+    project: "Heritage Reels Video Production",
     category: "Video",
-    summary: "Creative testing framework for hooks, structure, and CTA optimization.",
-    result: "3.4M organic views",
+    summary: "Created long-form and short-form video content, including on-site reels for heritage storytelling.",
+    result: "1.9M total reel views",
   },
   {
-    project: "Authority Content Series",
+    project: "Insights & Reporting Content",
     category: "Blog",
-    summary: "Editorial series transforming campaign data into thought-leadership content.",
-    result: "41% newsletter sign-up lift",
-  },
-  {
-    project: "Seasonal Promo Reboot",
-    category: "Campaign",
-    summary: "Modernized creative direction for paid + organic holiday campaign assets.",
-    result: "+32% conversion rate",
-  },
-  {
-    project: "UGC Creator Playbook",
-    category: "Social",
-    summary: "UGC briefing system with reusable scripts and brand-safe shot lists.",
-    result: "9.8% CTR average",
+    summary: "Produced analytics-led reports and content performance summaries for leadership and stakeholders.",
+    result: "Reporting time cut by 35%",
   },
 ];
 
@@ -95,16 +89,16 @@ const templates = [
 
 const examples = [
   {
-    title: "Instagram Reel Hook",
-    sample: "You’re posting every day but still not converting? Try this 3-second hook framework.",
+    title: "Heritage Event Reel",
+    sample: "Fast-cut location shots, voiceover context, and CTA to drive weekend visits.",
   },
   {
-    title: "LinkedIn Authority Post",
-    sample: "3 social experiments we ran this month, and the one that doubled qualified leads.",
+    title: "School Admissions Campaign Post",
+    sample: "Parent-focused carousel with key dates, testimonials, and direct enquiry CTA.",
   },
   {
-    title: "UGC Ad Concept",
-    sample: "Problem-first story arc: pain point, quick demo, proof, then a high-intent CTA.",
+    title: "Monthly Analytics Snapshot",
+    sample: "Instagram + Facebook KPI breakdown highlighting reach, saves, CTR, and next-month actions.",
   },
 ];
 
@@ -224,7 +218,7 @@ export function PortfolioSite() {
               Bright ideas, bold content, measurable social growth.
             </h1>
             <p className="mt-6 max-w-2xl text-base text-zinc-700 sm:text-lg">
-              I build modern social media campaigns, creative assets, and repeatable systems that turn engagement into business outcomes.
+              I am a social media marketing officer delivering campaign strategy, channel management, and creative production for heritage organisations and schools.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#portfolio" className="rounded-full bg-fuchsia-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-fuchsia-700">
@@ -238,10 +232,10 @@ export function PortfolioSite() {
 
           <div className="grid grid-cols-2 gap-4">
             {[
-              ["65+", "Social Campaigns"],
-              ["8.2M", "Monthly Impressions"],
-              ["3.9x", "Average ROAS"],
-              ["93%", "Client Retention"],
+              ["40+", "Heritage Campaigns"],
+              ["120+", "School Posts / Month"],
+              ["1.9M", "Reel Views"],
+              ["32%", "Avg. Engagement Lift"],
             ].map(([value, label], index) => (
               <motion.div
                 key={label}
@@ -334,6 +328,31 @@ export function PortfolioSite() {
                 <p className="mt-2 text-base text-zinc-800">{example.sample}</p>
               </article>
             ))}
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-8 sm:px-10 lg:px-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+          transition={{ duration: 0.45 }}
+          className="rounded-3xl border border-white bg-white p-6 shadow-sm"
+        >
+          <h2 className="text-2xl font-semibold tracking-tight">Instagram Reel Showcase</h2>
+          <p className="mt-2 text-sm text-zinc-700">
+            Dedicated space for your heritage reels. Replace the link below with your live Instagram Reel embed URL.
+          </p>
+          <div className="mt-4 overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-2">
+            <iframe
+              title="Instagram Reel Embed"
+              src="https://www.instagram.com/reel/C9example/embed"
+              className="h-[560px] w-full rounded-xl"
+              loading="lazy"
+              allowTransparency
+            />
           </div>
         </motion.div>
       </section>
