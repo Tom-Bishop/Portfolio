@@ -42,77 +42,67 @@ type Skill = {
   category: "Frontend" | "Backend" | "Security" | "Tools";
 };
 
-// PLACEHOLDER PROJECTS - Replace these with your actual projects
+// Tom's Real Projects
 const projects: Project[] = [
   {
     id: "1",
-    title: "📌 Your First Project",
-    category: "Web Development",
-    description: "Replace this with your actual project description. Explain what you built, the problem it solves, and what you learned.",
-    technologies: ["React", "TypeScript", "Tailwind CSS"],
-    status: "planned",
-    imageUrl: undefined,
-    liveUrl: undefined,
-    githubUrl: undefined,
+    title: "ICS/OT Incident Response Simulation",
+    category: "Security",
+    description:
+      "Designed and documented a full IT/OT incident response scenario involving brute-force activity against VMware vCenter. Built detection logic, analysed authentication patterns, and produced executive and technical reporting.",
+    technologies: ["Wazuh", "VMware vCenter", "Windows Event Logs", "MITRE ATT&CK"],
+    status: "completed",
   },
   {
     id: "2",
-    title: "📌 Security Project",
+    title: "Hyper-V Monitoring Dashboard (Wazuh)",
     category: "Security",
-    description: "Add a cyber security project here - could be a vulnerability assessment, security tool, penetration test, or security awareness initiative.",
-    technologies: ["Python", "Nmap", "Wireshark"],
-    status: "planned",
-    imageUrl: undefined,
-    liveUrl: undefined,
-    githubUrl: undefined,
+    description:
+      "Built a custom Wazuh dashboard to monitor Hyper-V hosts. Focused on VMMS service status, Event IDs 18500–18510, host uptime, and performance metrics to improve virtualisation visibility.",
+    technologies: ["Wazuh", "Elastic Stack", "Windows Server", "Hyper-V"],
+    status: "in-progress",
   },
   {
     id: "3",
-    title: "📌 Creative Design Work",
-    category: "Design",
-    description: "Showcase any design work - UI/UX projects, branding, graphics, or web designs you've created.",
-    technologies: ["Figma", "Adobe XD", "Photoshop"],
-    status: "planned",
-    imageUrl: undefined,
-    liveUrl: undefined,
-    githubUrl: undefined,
+    title: "Portfolio Site (This Project)",
+    category: "Web Development",
+    description:
+      "Designed and built a responsive portfolio site using React, TypeScript, and Framer Motion. Structured like a security dashboard to reflect my professional focus.",
+    technologies: ["React", "TypeScript", "Tailwind", "Framer Motion"],
+    status: "completed",
   },
   {
     id: "4",
-    title: "📌 Backend API Project",
-    category: "Web Development",
-    description: "Describe a backend project - REST API, database design, authentication system, or any server-side work.",
-    technologies: ["Node.js", "PostgreSQL", "Express"],
-    status: "planned",
-    imageUrl: undefined,
-    liveUrl: undefined,
-    githubUrl: undefined,
+    title: "Authentication Brute-Force Detection Logic",
+    category: "Security",
+    description:
+      "Created threshold-based detection rules for repeated failed authentication attempts. Triggered alerting after defined login failures and documented escalation workflow.",
+    technologies: ["SIEM", "Windows Security Logs", "Regex", "Threat Detection"],
+    status: "completed",
   },
   {
     id: "5",
-    title: "📌 Personal Learning Project",
+    title: "Home Lab Security Environment",
     category: "Other",
-    description: "Add any other projects here - automation scripts, home lab setups, certifications, or learning initiatives.",
-    technologies: ["Add your tools here"],
-    status: "planned",
-    imageUrl: undefined,
-    liveUrl: undefined,
-    githubUrl: undefined,
+    description:
+      "Maintained a personal lab environment to test Active Directory configurations, BitLocker scenarios, VM hardening, and log ingestion pipelines.",
+    technologies: ["Active Directory", "Hyper-V", "Windows Server", "PowerShell"],
+    status: "in-progress",
   },
 ];
 
-// YOUR SKILLS - Update these with your actual skills and proficiency levels
+// Tom's Skills
 const skills: Skill[] = [
-  { name: "HTML/CSS", level: 85, category: "Frontend" },
-  { name: "JavaScript", level: 75, category: "Frontend" },
-  { name: "React", level: 70, category: "Frontend" },
-  { name: "TypeScript", level: 65, category: "Frontend" },
-  { name: "Node.js", level: 60, category: "Backend" },
-  { name: "Python", level: 65, category: "Backend" },
-  { name: "Network Security", level: 70, category: "Security" },
-  { name: "Cyber Security Fundamentals", level: 75, category: "Security" },
-  { name: "Git/GitHub", level: 80, category: "Tools" },
-  { name: "VS Code", level: 85, category: "Tools" },
+  { name: "SIEM Detection Engineering", level: 80, category: "Security" },
+  { name: "Incident Response & Triage", level: 75, category: "Security" },
+  { name: "Windows Event Log Analysis", level: 80, category: "Security" },
+  { name: "ICS / OT Security Concepts", level: 70, category: "Security" },
+  { name: "Active Directory", level: 75, category: "Backend" },
+  { name: "Virtualisation (Hyper-V / VMware)", level: 75, category: "Backend" },
+  { name: "Python (Security Automation)", level: 65, category: "Backend" },
+  { name: "React & TypeScript", level: 70, category: "Frontend" },
+  { name: "Git & Version Control", level: 80, category: "Tools" },
+  { name: "Wazuh / Elastic Stack", level: 75, category: "Tools" },
 ];
 
 // STATS - These will auto-update based on your projects
@@ -304,18 +294,23 @@ export function PortfolioSite() {
                   <div className="flex-1">
                     <h2 className="text-2xl font-bold mb-2">Welcome to My Portfolio!</h2>
                     <p className="text-slate-300 text-sm mb-4">
-                      👋 This is your creative portfolio dashboard. Replace this text with your introduction.
-                      Tell visitors who you are, what you do, and what makes you passionate about your work.
+                      I'm Tom Baptist, an Apprentice Cyber Security Engineer specialising in
+                      ICS/OT environments and detection engineering. My focus is building
+                      practical security monitoring, investigating suspicious activity, and
+                      improving visibility across critical infrastructure systems.
+                      <br /><br />
+                      I come from an infrastructure background, which means I don't just
+                      detect issues — I understand how the systems operate underneath.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-medium">
-                        Cyber Security
+                        SIEM Detection
                       </span>
                       <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-medium">
-                        Web Development
+                        ICS/OT Security
                       </span>
                       <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">
-                        Problem Solver
+                        Incident Response
                       </span>
                     </div>
                   </div>
@@ -419,18 +414,17 @@ export function PortfolioSite() {
                 </div>
               </motion.section>
 
-              {/* GETTING STARTED GUIDE */}
-              <section className="border border-amber-900/30 rounded-lg bg-amber-950/10 p-6">
+              {/* NEXT STEPS */}
+              <section className="border border-emerald-900/30 rounded-lg bg-emerald-950/10 p-6">
                 <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                  <FiBriefcase className="text-amber-400" />
-                  Getting Started - Update Your Portfolio
+                  <FiCheckCircle className="text-emerald-400" />
+                  You're All Set!
                 </h3>
                 <div className="space-y-2 text-sm text-slate-300">
-                  <p>✏️ Edit <code className="px-2 py-1 bg-slate-900/60 rounded text-xs">portfolio-site.tsx</code> to customize</p>
-                  <p>📁 Replace placeholder projects with your actual work</p>
-                  <p>💪 Update your skills and proficiency levels</p>
-                  <p>👤 Customize the "About Me" section with your story</p>
-                  <p>🔗 Add links to your GitHub, live demos, and project screenshots</p>
+                  <p>✅ Projects added and customized</p>
+                  <p>✅ Skills & proficiency levels set</p>
+                  <p>✅ Professional bio and background updated</p>
+                  <p>💡 <strong>Next:</strong> Add project links (GitHub repos, live demos) and keep your portfolio updated as you complete new work</p>
                 </div>
               </section>
             </div>
@@ -521,14 +515,14 @@ export function PortfolioSite() {
                 })}
               </div>
 
-              {/* ADD PROJECT REMINDER */}
+              {/* ADD PROJECT LINKS REMINDER */}
               <div className="border border-dashed border-teal-900/40 rounded-lg p-8 text-center">
                 <FiCode className="mx-auto text-teal-400 mb-3" size={48} />
-                <h3 className="text-lg font-semibold mb-2">Ready to add your projects?</h3>
+                <h3 className="text-lg font-semibold mb-2">Ready to add project links?</h3>
                 <p className="text-sm text-slate-400">
-                  Edit the <code className="px-2 py-1 bg-slate-900/60 rounded">projects</code> array in{" "}
-                  <code className="px-2 py-1 bg-slate-900/60 rounded">portfolio-site.tsx</code> to showcase
-                  your work
+                  Add GitHub URLs and live demo links to your projects in the{" "}
+                  <code className="px-2 py-1 bg-slate-900/60 rounded">projects</code> array to make it easy
+                  for visitors to explore your code.
                 </p>
               </div>
             </div>
@@ -704,11 +698,16 @@ export function PortfolioSite() {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold mb-2">Tom Baptist</h3>
                     <p className="text-slate-300 mb-4">
-                      <strong>👤 Replace this section with your introduction!</strong>
-                      <br />
-                      <br />
-                      Tell your story here. Who are you? What drives you? What are you passionate about in tech
-                      and cyber security? Share your journey, your goals, and what makes you unique.
+                      I'm an Apprentice Cyber Security Engineer working within IT and OT
+                      environments, with a strong infrastructure background.
+                      <br /><br />
+                      My work focuses on detection engineering, incident response, and
+                      improving visibility across critical systems. I'm particularly
+                      interested in how traditional IT security principles apply within
+                      industrial control environments.
+                      <br /><br />
+                      I've achieved CompTIA Security+ and I'm currently progressing through
+                      the Level 4 Cyber Security Technologist apprenticeship standard.
                     </p>
                   </div>
                 </div>
@@ -723,12 +722,12 @@ export function PortfolioSite() {
                   <div>
                     <span className="text-teal-300 font-semibold">🎯 Focus Areas:</span>
                     <p className="text-slate-300 mt-1">
-                      ICS/OT Security, SIEM Detection, Network Analysis, Incident Response
+                      ICS/OT Security, SIEM Detection, Detection Engineering, Incident Response
                     </p>
                   </div>
                   <div>
                     <span className="text-teal-300 font-semibold">🏆 Certifications:</span>
-                    <p className="text-slate-300 mt-1">CompTIA Security+ (Active)</p>
+                    <p className="text-slate-300 mt-1">CompTIA Security+ (Active) | Level 4 Cyber Security Technologist (In Progress)</p>
                   </div>
                   <div>
                     <span className="text-teal-300 font-semibold">📍 Location:</span>
@@ -746,10 +745,10 @@ export function PortfolioSite() {
                 <h3 className="text-xl font-semibold">What I Do</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    { icon: FiShield, title: "ICS/OT Security", desc: "Protecting critical infrastructure" },
-                    { icon: FiCode, title: "Detection Engineering", desc: "Building SIEM rules and alerts" },
-                    { icon: FiBriefcase, title: "Incident Response", desc: "Triage and investigation" },
-                    { icon: FiAward, title: "Continuous Learning", desc: "Always expanding my skillset" },
+                    { icon: FiShield, title: "Detection Engineering", desc: "Building custom SIEM rules and alert logic" },
+                    { icon: FiCode, title: "Incident Response", desc: "Triage, investigation, and escalation workflows" },
+                    { icon: FiBriefcase, title: "ICS/OT Security", desc: "Critical infrastructure monitoring and hardening" },
+                    { icon: FiAward, title: "Continuous Learning", desc: "Infrastructure background + security expertise" },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-3">
                       <item.icon className="text-teal-400 mt-1" size={20} />
@@ -768,10 +767,11 @@ export function PortfolioSite() {
                 transition={{ delay: 0.2 }}
                 className="border border-blue-900/30 rounded-lg bg-blue-950/10 p-6"
               >
-                <h3 className="text-lg font-semibold mb-3">💡 Customize This Section</h3>
+                <h3 className="text-lg font-semibold mb-3">� Background & Motivation</h3>
                 <p className="text-sm text-slate-300">
-                  This "About Me" section is a placeholder. Replace it with your actual background, experience,
-                  goals, and what makes you unique. This is your chance to tell your story!
+                  Starting from an infrastructure perspective has given me a unique advantage in security work—I understand how systems
+                  are meant to function, which helps me identify when something's wrong. This foundation in active directory,
+                  virtualisation, and systems administration directly informs my approach to detection engineering and incident response.
                 </p>
               </motion.div>
             </div>
