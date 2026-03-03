@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Media Marketing Portfolio",
-  description: "Modern and creative social media and web media marketing portfolio website.",
+  title: "Jogn | Social Media Marketing Portfolio",
+  description: "Modern, bright, and creative portfolio showcasing social media marketing projects, templates, and campaign examples.",
 };
 
 export default function RootLayout({
