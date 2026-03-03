@@ -3,151 +3,147 @@
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import {
-  FiAlertTriangle,
+  FiCode,
   FiCheckCircle,
-  FiClock,
-  FiDownload,
+  FiFolder,
+  FiGithub,
   FiGlobe,
   FiLinkedin,
-  FiLogOut,
   FiMail,
   FiMenu,
   FiRefreshCw,
-  FiSearch,
-  FiServer,
   FiSettings,
   FiShield,
   FiTrendingUp,
   FiX,
+  FiUser,
+  FiBriefcase,
+  FiAward,
 } from "react-icons/fi";
 
 type SubmitState = "idle" | "sending" | "sent" | "error";
-type NavSection = "dashboard" | "incidents" | "cases" | "settings" | "about";
+type NavSection = "dashboard" | "projects" | "skills" | "contact" | "about";
 
-type CaseStudy = {
+type Project = {
   id: string;
   title: string;
-  category: "ICS/OT" | "Network" | "Governance" | "Labs";
-  summary: string;
-  outcome: string;
-  severity: "critical" | "high" | "medium";
-  timestamp: string;
-  status: "resolved" | "in-progress" | "documented";
-};
-
-type IncidentAlert = {
-  id: string;
-  title: string;
-  severity: "critical" | "high" | "medium" | "low";
-  timestamp: string;
-  status: "open" | "investigating" | "resolved";
+  category: "Web Development" | "Security" | "Design" | "Other";
   description: string;
+  technologies: string[];
+  status: "completed" | "in-progress" | "planned";
+  imageUrl?: string;
+  liveUrl?: string;
+  githubUrl?: string;
 };
 
-const caseStudies: CaseStudy[] = [
+type Skill = {
+  name: string;
+  level: number; // 0-100
+  category: "Frontend" | "Backend" | "Security" | "Tools";
+};
+
+// PLACEHOLDER PROJECTS - Replace these with your actual projects
+const projects: Project[] = [
   {
     id: "1",
-    title: "ICS/OT Security Baseline Review",
-    category: "ICS/OT",
-    summary: "Baseline assessment of control zone architecture and critical asset exposure.",
-    outcome: "Identified 8 high-priority remediation items; mapped trust boundaries.",
-    severity: "high",
-    timestamp: "2025-02-15T14:32:00Z",
-    status: "resolved",
+    title: "📌 Your First Project",
+    category: "Web Development",
+    description: "Replace this with your actual project description. Explain what you built, the problem it solves, and what you learned.",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    status: "planned",
+    imageUrl: undefined,
+    liveUrl: undefined,
+    githubUrl: undefined,
   },
   {
     id: "2",
-    title: "Network Security Monitoring Support",
-    category: "Network",
-    summary: "Design and deployment of network detection telemetry pipelines.",
-    outcome: "Established SIEM baseline with 15+ detection rules for lateral movement.",
-    severity: "high",
-    timestamp: "2025-02-10T09:18:00Z",
-    status: "resolved",
+    title: "📌 Security Project",
+    category: "Security",
+    description: "Add a cyber security project here - could be a vulnerability assessment, security tool, penetration test, or security awareness initiative.",
+    technologies: ["Python", "Nmap", "Wireshark"],
+    status: "planned",
+    imageUrl: undefined,
+    liveUrl: undefined,
+    githubUrl: undefined,
   },
   {
     id: "3",
-    title: "Vulnerability & Patch Tracking",
-    category: "Governance",
-    summary: "Cross-platform vulnerability lifecycle management and remediation workflow.",
-    outcome: "Reduced mean time-to-patch by 3 weeks; standardized triage notes.",
-    severity: "medium",
-    timestamp: "2025-02-01T11:42:00Z",
-    status: "resolved",
+    title: "📌 Creative Design Work",
+    category: "Design",
+    description: "Showcase any design work - UI/UX projects, branding, graphics, or web designs you've created.",
+    technologies: ["Figma", "Adobe XD", "Photoshop"],
+    status: "planned",
+    imageUrl: undefined,
+    liveUrl: undefined,
+    githubUrl: undefined,
   },
   {
     id: "4",
-    title: "Security Awareness & Training",
-    category: "Governance",
-    summary: "Phishing simulation and user security behavior guidance program.",
-    outcome: "25% reduction in suspicious link clicks; elevated security awareness.",
-    severity: "medium",
-    timestamp: "2025-01-25T16:05:00Z",
-    status: "resolved",
+    title: "📌 Backend API Project",
+    category: "Web Development",
+    description: "Describe a backend project - REST API, database design, authentication system, or any server-side work.",
+    technologies: ["Node.js", "PostgreSQL", "Express"],
+    status: "planned",
+    imageUrl: undefined,
+    liveUrl: undefined,
+    githubUrl: undefined,
   },
   {
     id: "5",
-    title: "Home Lab: Detection & Hardening",
-    category: "Labs",
-    summary: "Personal lab environment for detection engineering and incident response practice.",
-    outcome: "Built 10+ lab scenarios; practiced blue-team response and log analysis.",
-    severity: "medium",
-    timestamp: "2025-01-15T10:20:00Z",
-    status: "in-progress",
+    title: "📌 Personal Learning Project",
+    category: "Other",
+    description: "Add any other projects here - automation scripts, home lab setups, certifications, or learning initiatives.",
+    technologies: ["Add your tools here"],
+    status: "planned",
+    imageUrl: undefined,
+    liveUrl: undefined,
+    githubUrl: undefined,
   },
 ];
 
-const recentIncidents: IncidentAlert[] = [
-  {
-    id: "INC-2025-0847",
-    title: "OT Zone Auth Anomaly Detected",
-    severity: "high",
-    timestamp: "Today, 14:32",
-    status: "investigating",
-    description: "Unusual authentication pattern from PLC-02 in Zone-A. Baseline deviation detected. Triage in progress.",
-  },
-  {
-    id: "INC-2025-0846",
-    title: "Firewall Rule Drift Alert",
-    severity: "medium",
-    timestamp: "Today, 12:18",
-    status: "investigating",
-    description: "Outbound rule modification detected on Edge-FW-01 outside of change window. Policy check initiated.",
-  },
-  {
-    id: "INC-2025-0845",
-    title: "Patch Compliance Update",
-    severity: "low",
-    timestamp: "Yesterday, 08:45",
-    status: "resolved",
-    description: "Monthly patch cycle completed. 98% compliance rate achieved. 2 exemptions documented.",
-  },
+// YOUR SKILLS - Update these with your actual skills and proficiency levels
+const skills: Skill[] = [
+  { name: "HTML/CSS", level: 85, category: "Frontend" },
+  { name: "JavaScript", level: 75, category: "Frontend" },
+  { name: "React", level: 70, category: "Frontend" },
+  { name: "TypeScript", level: 65, category: "Frontend" },
+  { name: "Node.js", level: 60, category: "Backend" },
+  { name: "Python", level: 65, category: "Backend" },
+  { name: "Network Security", level: 70, category: "Security" },
+  { name: "Cyber Security Fundamentals", level: 75, category: "Security" },
+  { name: "Git/GitHub", level: 80, category: "Tools" },
+  { name: "VS Code", level: 85, category: "Tools" },
 ];
 
-const getSeverityColor = (severity: string): string => {
-  switch (severity) {
-    case "critical":
-      return "text-red-400 bg-red-950/40 border-red-800";
-    case "high":
-      return "text-orange-400 bg-orange-950/40 border-orange-800";
-    case "medium":
-      return "text-amber-400 bg-amber-950/40 border-amber-800";
-    case "low":
+// STATS - These will auto-update based on your projects
+const getProjectStats = () => {
+  const completed = projects.filter(p => p.status === "completed").length;
+  const inProgress = projects.filter(p => p.status === "in-progress").length;
+  const planned = projects.filter(p => p.status === "planned").length;
+  return { completed, inProgress, planned, total: projects.length };
+};
+
+const getStatusColor = (status: string): string => {
+  switch (status) {
+    case "completed":
       return "text-emerald-400 bg-emerald-950/40 border-emerald-800";
+    case "in-progress":
+      return "text-amber-400 bg-amber-950/40 border-amber-800";
+    case "planned":
+      return "text-blue-400 bg-blue-950/40 border-blue-800";
     default:
       return "text-slate-400 bg-slate-950/40 border-slate-800";
   }
 };
 
-const getSeverityBadgeColor = (severity: string): string => {
-  switch (severity) {
-    case "critical":
-    case "high":
-      return "bg-red-500/20 text-red-300";
-    case "medium":
-      return "bg-amber-500/20 text-amber-300";
-    case "low":
+const getStatusBadgeColor = (status: string): string => {
+  switch (status) {
+    case "completed":
       return "bg-emerald-500/20 text-emerald-300";
+    case "in-progress":
+      return "bg-amber-500/20 text-amber-300";
+    case "planned":
+      return "bg-blue-500/20 text-blue-300";
     default:
       return "bg-slate-500/20 text-slate-300";
   }
@@ -157,6 +153,7 @@ export function PortfolioSite() {
   const [activeNav, setActiveNav] = useState<NavSection>("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [contactStatus, setContactStatus] = useState<SubmitState>("idle");
+  const stats = getProjectStats();
 
   async function handleContactSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -201,15 +198,14 @@ export function PortfolioSite() {
               {mobileMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
             </button>
             <div>
-              <p className="text-xs uppercase tracking-wider text-teal-400 font-semibold">OpManager</p>
-              <h1 className="text-lg font-bold text-slate-100">Tom Baptist | Cyber OT Security</h1>
+              <p className="text-xs uppercase tracking-wider text-teal-400 font-semibold">Portfolio</p>
+              <h1 className="text-lg font-bold text-slate-100">Tom Baptist | Cyber Security Engineer</h1>
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <p className="text-xs text-slate-400 hidden sm:block">Last update: now</p>
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-teal-950/40 border border-teal-900/50">
               <div className="w-2 h-2 bg-teal-400 rounded-full animate-pulse"></div>
-              <span className="text-xs text-teal-300 font-medium">Online</span>
+              <span className="text-xs text-teal-300 font-medium">Available</span>
             </div>
           </div>
         </div>
@@ -218,17 +214,17 @@ export function PortfolioSite() {
       <div className="flex">
         {/* LEFT SIDEBAR NAVIGATION */}
         <nav
-          className={`fixed md:static w-56 h-[calc(100vh-57px)] bg-[#0d1117]/95 border-r border-teal-900/30 overflow-y-auto transition-transform md:translate-x-0 ${
+          className={`fixed md:static w-56 h-[calc(100vh-57px)] bg-[#0d1117]/95 border-r border-teal-900/30 overflow-y-auto transition-transform md:translate-x-0 z-40 ${
             mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
           <div className="p-4 space-y-2">
             {[
-              { id: "dashboard" as const, label: "Dashboard", icon: FiTrendingUp },
-              { id: "incidents" as const, label: "Incidents & Alerts", icon: FiAlertTriangle },
-              { id: "cases" as const, label: "Case Studies", icon: FiServer },
-              { id: "settings" as const, label: "Settings", icon: FiSettings },
-              { id: "about" as const, label: "About", icon: FiShield },
+              { id: "dashboard" as const, label: "Overview", icon: FiTrendingUp },
+              { id: "projects" as const, label: "My Projects", icon: FiCode },
+              { id: "skills" as const, label: "Skills", icon: FiAward },
+              { id: "contact" as const, label: "Get in Touch", icon: FiMail },
+              { id: "about" as const, label: "About Me", icon: FiUser },
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -249,32 +245,49 @@ export function PortfolioSite() {
           </div>
 
           <div className="border-t border-teal-900/30 p-4 mt-4">
-            <p className="text-xs uppercase tracking-wider text-slate-400 mb-3">Quick Stats</p>
+            <p className="text-xs uppercase tracking-wider text-slate-400 mb-3">Project Stats</p>
             <div className="space-y-2">
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/">
-                <p className="text-xs text-slate-400">Active Cases</p>
-                <p className="text-xl font-bold text-teal-300">5</p>
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800">
+                <p className="text-xs text-slate-400">Completed</p>
+                <p className="text-xl font-bold text-emerald-400">{stats.completed}</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/">
-                <p className="text-xs text-slate-400">Open Incidents</p>
-                <p className="text-xl font-bold text-orange-400">2</p>
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800">
+                <p className="text-xs text-slate-400">In Progress</p>
+                <p className="text-xl font-bold text-amber-400">{stats.inProgress}</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800/">
-                <p className="text-xs text-slate-400">Resolved</p>
-                <p className="text-xl font-bold text-emerald-400">3</p>
+              <div className="p-3 rounded-lg bg-slate-900/50 border border-slate-800">
+                <p className="text-xs text-slate-400">Planned</p>
+                <p className="text-xl font-bold text-blue-400">{stats.planned}</p>
               </div>
             </div>
           </div>
 
           <div className="border-t border-teal-900/30 p-4 mt-4">
-            <a
-              href="https://www.linkedin.com/in/tom-b-a81271132"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs text-teal-300 hover:text-teal-200 transition"
-            >
-              <FiLinkedin size={16} /> LinkedIn Profile
-            </a>
+            <p className="text-xs uppercase tracking-wider text-slate-400 mb-3">Connect</p>
+            <div className="space-y-2">
+              <a
+                href="https://www.linkedin.com/in/tom-b-a81271132"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-teal-300 hover:text-teal-200 transition"
+              >
+                <FiLinkedin size={16} /> LinkedIn
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-teal-300 hover:text-teal-200 transition"
+              >
+                <FiGithub size={16} /> GitHub
+              </a>
+              <a
+                href="mailto:tom@jogn.co.uk"
+                className="flex items-center gap-2 text-xs text-teal-300 hover:text-teal-200 transition"
+              >
+                <FiMail size={16} /> Email
+              </a>
+            </div>
           </div>
         </nav>
 
@@ -282,32 +295,59 @@ export function PortfolioSite() {
         <main className="flex-1 overflow-auto">
           {activeNav === "dashboard" && (
             <div className="p-4 sm:p-6 space-y-6">
-              {/* TOP METRICS ROW */}
+              {/* WELCOME SECTION */}
+              <section className="border border-teal-900/30 rounded-lg bg-gradient-to-br from-teal-950/20 to-slate-900/30 p-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-teal-500/20 border border-teal-500/40">
+                    <FiUser size={32} className="text-teal-300" />
+                  </div>
+                  <div className="flex-1">
+                    <h2 className="text-2xl font-bold mb-2">Welcome to My Portfolio!</h2>
+                    <p className="text-slate-300 text-sm mb-4">
+                      👋 This is your creative portfolio dashboard. Replace this text with your introduction.
+                      Tell visitors who you are, what you do, and what makes you passionate about your work.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-medium">
+                        Cyber Security
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-medium">
+                        Web Development
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-medium">
+                        Problem Solver
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* QUICK STATS */}
               <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
                   {
-                    label: "Security Posture",
-                    value: "98%",
+                    label: "Total Projects",
+                    value: stats.total.toString(),
+                    color: "text-teal-400",
+                    icon: FiFolder,
+                  },
+                  {
+                    label: "Completed",
+                    value: stats.completed.toString(),
                     color: "text-emerald-400",
                     icon: FiCheckCircle,
                   },
                   {
-                    label: "MTTA Trend",
-                    value: "↓ 22%",
-                    color: "text-emerald-400",
-                    icon: FiTrendingUp,
+                    label: "In Progress",
+                    value: stats.inProgress.toString(),
+                    color: "text-amber-400",
+                    icon: FiRefreshCw,
                   },
                   {
-                    label: "Incident Queue",
-                    value: "2",
-                    color: "text-orange-400",
-                    icon: FiAlertTriangle,
-                  },
-                  {
-                    label: "Cert: Sec+",
-                    value: "Active",
-                    color: "text-teal-400",
-                    icon: FiShield,
+                    label: "Skills",
+                    value: skills.length.toString(),
+                    color: "text-blue-400",
+                    icon: FiAward,
                   },
                 ].map((metric) => (
                   <motion.div
@@ -328,7 +368,7 @@ export function PortfolioSite() {
                 ))}
               </section>
 
-              {/* INCIDENT QUEUE */}
+              {/* FEATURED PROJECTS */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -337,229 +377,232 @@ export function PortfolioSite() {
               >
                 <div className="p-4 border-b border-teal-900/30 flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <FiAlertTriangle className="text-orange-400" />
-                    <h2 className="text-lg font-semibold">Incident Queue</h2>
+                    <FiCode className="text-teal-400" />
+                    <h2 className="text-lg font-semibold">Recent Projects</h2>
                   </div>
-                  <button className="p-2 hover:bg-slate-800/50 rounded-lg transition">
-                    <FiRefreshCw size={18} />
+                  <button
+                    onClick={() => setActiveNav("projects")}
+                    className="text-sm text-teal-300 hover:text-teal-200 transition"
+                  >
+                    View All →
                   </button>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-teal-900/20 text-slate-400 text-xs uppercase">
-                        <th className="px-4 py-3 text-left">ID</th>
-                        <th className="px-4 py-3 text-left">Title</th>
-                        <th className="px-4 py-3 text-left">Severity</th>
-                        <th className="px-4 py-3 text-left">Status</th>
-                        <th className="px-4 py-3 text-left">Time</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-teal-900/20">
-                      {recentIncidents.map((incident) => (
-                        <tr
-                          key={incident.id}
-                          className="hover:bg-slate-800/20 transition border-b border-teal-900/10"
+                <div className="p-4 grid md:grid-cols-2 gap-4">
+                  {projects.slice(0, 4).map((project) => (
+                    <div
+                      key={project.id}
+                      className="p-4 rounded-lg border border-teal-900/20 bg-slate-950/40 hover:bg-slate-900/60 transition"
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <h3 className="font-semibold text-base">{project.title}</h3>
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-semibold ${getStatusBadgeColor(
+                            project.status
+                          )}`}
                         >
-                          <td className="px-4 py-3 font-mono text-xs text-teal-300">{incident.id}</td>
-                          <td className="px-4 py-3 text-slate-200">{incident.title}</td>
-                          <td className="px-4 py-3">
-                            <span
-                              className={`px-2 py-1 rounded text-xs font-semibold ${getSeverityBadgeColor(
-                                incident.severity
-                              )}`}
-                            >
-                              {incident.severity.toUpperCase()}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <span
-                              className={
-                                incident.status === "investigating"
-                                  ? "text-amber-400"
-                                  : incident.status === "open"
-                                  ? "text-red-400"
-                                  : "text-emerald-400"
-                              }
-                            >
-                              {incident.status.charAt(0).toUpperCase() + incident.status.slice(1)}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3 text-slate-400">{incident.timestamp}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </motion.section>
-
-              {/* OPERATIONAL SUMMARY */}
-              <motion.section
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.1 }}
-                className="grid md:grid-cols-2 gap-6"
-              >
-                {/* OT ENVIRONMENT STATUS */}
-                <div className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-4">
-                  <h3 className="font-semibold mb-4 flex items-center gap-2">
-                    <FiServer className="text-teal-400" />
-                    OT Environment Status
-                  </h3>
-                  <div className="space-y-3">
-                    {[
-                      { name: "ICS Zone-A", status: "healthy", detail: "All systems nominal" },
-                      { name: "ICS Zone-B", status: "healthy", detail: "Baseline established" },
-                      { name: "Network-OT", status: "healthy", detail: "Monitoring active" },
-                      { name: "Patch Cycle", status: "healthy", detail: "98% compliance" },
-                    ].map((item) => (
-                      <div
-                        key={item.name}
-                        className="flex items-center justify-between p-3 rounded-lg bg-slate-800/40 border border-teal-900/20"
-                      >
-                        <div>
-                          <p className="text-sm font-medium">{item.name}</p>
-                          <p className="text-xs text-slate-400">{item.detail}</p>
-                        </div>
-                        <FiCheckCircle className="text-emerald-400" />
+                          {project.status.replace("-", " ")}
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* SKILLS & FOCUS */}
-                <div className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-4">
-                  <h3 className="font-semibold mb-4 flex items-center gap-2">
-                    <FiShield className="text-teal-400" />
-                    Specialization
-                  </h3>
-                  <div className="space-y-3">
-                    {[
-                      { skill: "ICS/OT Security", level: "Apprentice-Advanced" },
-                      { skill: "SIEM Detection", level: "Detection Engineering" },
-                      { skill: "Network Analysis", level: "Threat Hunting" },
-                      { skill: "Incident Response", level: "Triage & Escalation" },
-                    ].map((item) => (
-                      <div key={item.skill}>
-                        <div className="flex items-center justify-between mb-2">
-                          <p className="text-sm font-medium">{item.skill}</p>
-                          <span className="text-xs text-teal-300">{item.level}</span>
-                        </div>
-                        <div className="w-full h-2 bg-slate-800/60 rounded-full overflow-hidden">
-                          <div className="h-full w-4/5 bg-gradient-to-r from-teal-500 to-teal-400"></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.section>
-            </div>
-          )}
-
-          {activeNav === "incidents" && (
-            <div className="p-4 sm:p-6 space-y-6">
-              <h2 className="text-2xl font-bold">Incident & Alert Management</h2>
-              <div className="grid gap-4">
-                {recentIncidents.map((incident) => (
-                  <motion.article
-                    key={incident.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-lg border-l-4 ${getSeverityColor(incident.severity)}`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <code className="text-xs font-mono text-teal-300">{incident.id}</code>
+                      <p className="text-sm text-slate-300 mb-3">{project.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.slice(0, 3).map((tech) => (
                           <span
-                            className={`px-2 py-1 rounded text-xs font-semibold ${getSeverityBadgeColor(
-                              incident.severity
-                            )}`}
+                            key={tech}
+                            className="px-2 py-1 rounded-full bg-teal-500/10 text-teal-300 text-xs"
                           >
-                            {incident.severity.toUpperCase()}
+                            {tech}
                           </span>
-                        </div>
-                        <h3 className="font-semibold text-lg mb-1">{incident.title}</h3>
-                        <p className="text-sm text-slate-300 mb-2">{incident.description}</p>
-                        <p className="text-xs text-slate-400">Reported: {incident.timestamp}</p>
+                        ))}
                       </div>
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ml-4 ${
-                          incident.status === "investigating"
-                            ? "bg-amber-500/20 text-amber-300"
-                            : incident.status === "open"
-                            ? "bg-red-500/20 text-red-300"
-                            : "bg-emerald-500/20 text-emerald-300"
-                        }`}
-                      >
-                        {incident.status.charAt(0).toUpperCase() +
-                          incident.status.slice(1).replace("-", " ")}
-                      </span>
                     </div>
-                  </motion.article>
-                ))}
-              </div>
+                  ))}
+                </div>
+              </motion.section>
+
+              {/* GETTING STARTED GUIDE */}
+              <section className="border border-amber-900/30 rounded-lg bg-amber-950/10 p-6">
+                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                  <FiBriefcase className="text-amber-400" />
+                  Getting Started - Update Your Portfolio
+                </h3>
+                <div className="space-y-2 text-sm text-slate-300">
+                  <p>✏️ Edit <code className="px-2 py-1 bg-slate-900/60 rounded text-xs">portfolio-site.tsx</code> to customize</p>
+                  <p>📁 Replace placeholder projects with your actual work</p>
+                  <p>💪 Update your skills and proficiency levels</p>
+                  <p>👤 Customize the "About Me" section with your story</p>
+                  <p>🔗 Add links to your GitHub, live demos, and project screenshots</p>
+                </div>
+              </section>
             </div>
           )}
 
-          {activeNav === "cases" && (
+          {activeNav === "projects" && (
             <div className="p-4 sm:p-6 space-y-6">
-              <h2 className="text-2xl font-bold">Case Studies & Documentation</h2>
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold">My Projects</h2>
+                <div className="flex items-center gap-2 text-sm text-slate-400">
+                  <FiFolder size={16} />
+                  {stats.total} Total
+                </div>
+              </div>
+
               <div className="grid md:grid-cols-2 gap-4">
-                {caseStudies.map((caseStudy) => (
-                  <motion.article
-                    key={caseStudy.id}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`p-4 rounded-lg border ${getSeverityColor(caseStudy.severity)}`}
-                  >
-                    <div className="flex items-start justify-between mb-3">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-teal-300">
-                        {caseStudy.category}
-                      </span>
-                      <span
-                        className={`px-2 py-1 rounded text-xs font-semibold ${getSeverityBadgeColor(
-                          caseStudy.severity
-                        )}`}
-                      >
-                        {caseStudy.severity.toUpperCase()}
-                      </span>
-                    </div>
-                    <h3 className="font-semibold text-base mb-2">{caseStudy.title}</h3>
-                    <p className="text-sm text-slate-300 mb-3">{caseStudy.summary}</p>
-                    <div className="p-3 rounded-lg bg-slate-950/40 mb-3 border border-slate-700/50">
-                      <p className="text-xs text-slate-400 mb-1">OUTCOME</p>
-                      <p className="text-sm text-emerald-300 font-medium">{caseStudy.outcome}</p>
-                    </div>
-                    <div className="flex items-center justify-between text-xs text-slate-400">
-                      <span className="font-mono">{caseStudy.timestamp.split("T")[0]}</span>
-                      <span
-                        className={
-                          caseStudy.status === "resolved"
-                            ? "text-emerald-400"
-                            : "text-amber-400"
-                        }
-                      >
-                        {caseStudy.status.charAt(0).toUpperCase() + caseStudy.status.slice(1)}
-                      </span>
-                    </div>
-                  </motion.article>
-                ))}
+                {projects.map((project) => {
+                  const categoryColors: Record<string, string> = {
+                    "Web Development": "bg-blue-500/20 text-blue-300",
+                    "Security": "bg-red-500/20 text-red-300",
+                    "Design": "bg-purple-500/20 text-purple-300",
+                    "Other": "bg-slate-500/20 text-slate-300",
+                  };
+
+                  return (
+                    <motion.article
+                      key={project.id}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className={`p-5 rounded-lg border-l-4 ${getStatusColor(project.status)}`}
+                    >
+                      <div className="flex items-start justify-between mb-3">
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-semibold ${
+                            categoryColors[project.category] || categoryColors["Other"]
+                          }`}
+                        >
+                          {project.category}
+                        </span>
+                        <span
+                          className={`px-2 py-1 rounded text-xs font-semibold ${getStatusBadgeColor(
+                            project.status
+                          )}`}
+                        >
+                          {project.status.toUpperCase().replace("-", " ")}
+                        </span>
+                      </div>
+                      <h3 className="font-semibold text-lg mb-2">{project.title}</h3>
+                      <p className="text-sm text-slate-300 mb-4">{project.description}</p>
+
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 rounded-full bg-teal-500/10 text-teal-300 text-xs"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-3 text-sm">
+                        {project.liveUrl ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-teal-300 hover:text-teal-200 transition"
+                          >
+                            <FiGlobe size={14} /> Live Demo
+                          </a>
+                        ) : (
+                          <span className="text-slate-500 text-xs">No live demo yet</span>
+                        )}
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-teal-300 hover:text-teal-200 transition"
+                          >
+                            <FiGithub size={14} /> Code
+                          </a>
+                        )}
+                      </div>
+                    </motion.article>
+                  );
+                })}
+              </div>
+
+              {/* ADD PROJECT REMINDER */}
+              <div className="border border-dashed border-teal-900/40 rounded-lg p-8 text-center">
+                <FiCode className="mx-auto text-teal-400 mb-3" size={48} />
+                <h3 className="text-lg font-semibold mb-2">Ready to add your projects?</h3>
+                <p className="text-sm text-slate-400">
+                  Edit the <code className="px-2 py-1 bg-slate-900/60 rounded">projects</code> array in{" "}
+                  <code className="px-2 py-1 bg-slate-900/60 rounded">portfolio-site.tsx</code> to showcase
+                  your work
+                </p>
               </div>
             </div>
           )}
 
-          {activeNav === "settings" && (
-            <div className="p-4 sm:p-6 space-y-6">
-              <h2 className="text-2xl font-bold">Get In Touch</h2>
+          {activeNav === "skills" && (
+            <div className="p-4 sm:p-6 space-y-6 max-w-4xl">
+              <h2 className="text-2xl font-bold">Skills & Technologies</h2>
+
+              {["Frontend", "Backend", "Security", "Tools"].map((category) => {
+                const categorySkills = skills.filter((s) => s.category === category);
+                if (categorySkills.length === 0) return null;
+
+                return (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-6 space-y-4"
+                  >
+                    <h3 className="text-xl font-semibold flex items-center gap-2">
+                      <FiAward className="text-teal-400" />
+                      {category}
+                    </h3>
+                    <div className="space-y-4">
+                      {categorySkills.map((skill) => (
+                        <div key={skill.name}>
+                          <div className="flex items-center justify-between mb-2">
+                            <p className="text-sm font-medium">{skill.name}</p>
+                            <span className="text-xs text-teal-300">{skill.level}%</span>
+                          </div>
+                          <div className="w-full h-2 bg-slate-800/60 rounded-full overflow-hidden">
+                            <motion.div
+                              initial={{ width: 0 }}
+                              animate={{ width: `${skill.level}%` }}
+                              transition={{ duration: 0.8, delay: 0.2 }}
+                              className="h-full bg-gradient-to-r from-teal-500 to-teal-400"
+                            ></motion.div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
+
+              {/* SKILLS TIP */}
+              <div className="border border-blue-900/30 rounded-lg bg-blue-950/10 p-6">
+                <h3 className="text-lg font-semibold mb-3">💡 Customize Your Skills</h3>
+                <p className="text-sm text-slate-300">
+                  Update the <code className="px-2 py-1 bg-slate-900/60 rounded text-xs">skills</code> array
+                  to reflect your actual proficiency levels. Add new skills or remove ones that don't apply to
+                  you.
+                </p>
+              </div>
+            </div>
+          )}
+
+          {activeNav === "contact" && (
+            <div className="p-4 sm:p-6 space-y-6 max-w-2xl mx-auto">
+              <h2 className="text-2xl font-bold">Get in Touch</h2>
+              <p className="text-slate-300">
+                Interested in collaborating or have a question? Send me a message and I'll get back to you as
+                soon as possible.
+              </p>
+
               <motion.form
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 onSubmit={handleContactSubmit}
-                className="max-w-2xl border border-teal-900/30 rounded-lg bg-slate-900/30 p-6 space-y-4"
+                className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-6 space-y-4"
               >
                 <div>
-                  <label className="block text-sm font-medium mb-2">Full Name</label>
+                  <label className="block text-sm font-medium mb-2">Full Name *</label>
                   <input
                     name="name"
                     required
@@ -568,7 +611,7 @@ export function PortfolioSite() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
+                  <label className="block text-sm font-medium mb-2">Email *</label>
                   <input
                     name="email"
                     type="email"
@@ -578,22 +621,22 @@ export function PortfolioSite() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Role / Nature of Inquiry</label>
+                  <label className="block text-sm font-medium mb-2">Subject *</label>
                   <input
                     name="projectType"
                     required
-                    placeholder="e.g., SOC Analyst Role, SIEM Integration, OT Security Review"
+                    placeholder="What would you like to discuss?"
                     className="w-full px-4 py-3 rounded-lg border border-teal-900/30 bg-slate-950/50 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
+                  <label className="block text-sm font-medium mb-2">Message *</label>
                   <textarea
                     name="message"
                     required
-                    placeholder="Tell me about the opportunity or challenge..."
+                    placeholder="Your message..."
                     rows={6}
-                    className="w-full px-4 py-3 rounded-lg border border-teal-900/30 bg-slate-950/50 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
+                    className="w-full px-4 py-3 rounded-lg border border-teal-900/30 bg-slate-950/50 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 resize-none"
                   />
                 </div>
                 <button
@@ -605,45 +648,92 @@ export function PortfolioSite() {
                   {contactStatus === "sending" ? "Sending..." : "Send Message"}
                 </button>
                 {contactStatus === "sent" && (
-                  <p className="text-sm text-emerald-400">✓ Message received. I'll respond shortly.</p>
+                  <p className="text-sm text-emerald-400">✓ Message sent successfully! I'll respond shortly.</p>
                 )}
                 {contactStatus === "error" && (
-                  <p className="text-sm text-red-400">✗ Error sending message. Please try again.</p>
+                  <p className="text-sm text-red-400">✗ Error sending message. Please try again or email me directly.</p>
                 )}
               </motion.form>
+
+              <div className="grid md:grid-cols-3 gap-4">
+                <a
+                  href="mailto:tom@jogn.co.uk"
+                  className="p-4 rounded-lg border border-teal-900/30 bg-slate-900/30 hover:bg-slate-900/50 transition text-center"
+                >
+                  <FiMail className="mx-auto text-teal-400 mb-2" size={24} />
+                  <p className="text-sm font-medium">Email</p>
+                  <p className="text-xs text-slate-400 mt-1">tom@jogn.co.uk</p>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/tom-b-a81271132"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-lg border border-teal-900/30 bg-slate-900/30 hover:bg-slate-900/50 transition text-center"
+                >
+                  <FiLinkedin className="mx-auto text-teal-400 mb-2" size={24} />
+                  <p className="text-sm font-medium">LinkedIn</p>
+                  <p className="text-xs text-slate-400 mt-1">Connect with me</p>
+                </a>
+                <a
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-4 rounded-lg border border-teal-900/30 bg-slate-900/30 hover:bg-slate-900/50 transition text-center"
+                >
+                  <FiGithub className="mx-auto text-teal-400 mb-2" size={24} />
+                  <p className="text-sm font-medium">GitHub</p>
+                  <p className="text-xs text-slate-400 mt-1">View my code</p>
+                </a>
+              </div>
             </div>
           )}
 
           {activeNav === "about" && (
             <div className="p-4 sm:p-6 space-y-6 max-w-3xl">
-              <h2 className="text-2xl font-bold">About Tom Baptist</h2>
+              <h2 className="text-2xl font-bold">About Me</h2>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-6 space-y-4"
               >
-                <h3 className="text-xl font-semibold">Professional Profile</h3>
-                <p className="text-slate-300">
-                  Apprentice Cyber Security Engineer at Tekgem UK LTD with specialization in Operational
-                  Technology (OT) and Industrial Control Systems (ICS) security. Focused on detection
-                  engineering, SIEM triage workflows, and practical incident response in OT environments.
-                </p>
-                <div className="pt-4 border-t border-teal-900/30 space-y-2">
-                  <p>
-                    <span className="text-teal-300 font-semibold">Company:</span> Tekgem UK LTD
-                  </p>
-                  <p>
-                    <span className="text-teal-300 font-semibold">Role:</span> Apprentice Cyber Security
-                    Engineer
-                  </p>
-                  <p>
-                    <span className="text-teal-300 font-semibold">Focus Areas:</span> ICS/OT Security,
-                    SIEM Detection, Network Threat Hunting
-                  </p>
-                  <p>
-                    <span className="text-teal-300 font-semibold">Certification:</span> CompTIA Security+ (Active)
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-lg bg-teal-500/20 border border-teal-500/40">
+                    <FiUser size={48} className="text-teal-300" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">Tom Baptist</h3>
+                    <p className="text-slate-300 mb-4">
+                      <strong>👤 Replace this section with your introduction!</strong>
+                      <br />
+                      <br />
+                      Tell your story here. Who are you? What drives you? What are you passionate about in tech
+                      and cyber security? Share your journey, your goals, and what makes you unique.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-teal-900/30 space-y-3">
+                  <div>
+                    <span className="text-teal-300 font-semibold">🏢 Current Role:</span>
+                    <p className="text-slate-300 mt-1">
+                      Apprentice Cyber Security Engineer at Tekgem UK LTD
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-teal-300 font-semibold">🎯 Focus Areas:</span>
+                    <p className="text-slate-300 mt-1">
+                      ICS/OT Security, SIEM Detection, Network Analysis, Incident Response
+                    </p>
+                  </div>
+                  <div>
+                    <span className="text-teal-300 font-semibold">🏆 Certifications:</span>
+                    <p className="text-slate-300 mt-1">CompTIA Security+ (Active)</p>
+                  </div>
+                  <div>
+                    <span className="text-teal-300 font-semibold">📍 Location:</span>
+                    <p className="text-slate-300 mt-1">United Kingdom</p>
+                  </div>
                 </div>
               </motion.div>
 
@@ -653,21 +743,20 @@ export function PortfolioSite() {
                 transition={{ delay: 0.1 }}
                 className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-6 space-y-4"
               >
-                <h3 className="text-xl font-semibold">Core Competencies</h3>
+                <h3 className="text-xl font-semibold">What I Do</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
-                    "ICS/OT Baseline Reviews",
-                    "Network Security Monitoring",
-                    "SIEM Detection Engineering",
-                    "Vulnerability Management",
-                    "Incident Triage",
-                    "Security Awareness Training",
-                    "Log Analysis & Correlation",
-                    "Home Lab Development",
-                  ].map((skill) => (
-                    <div key={skill} className="flex items-center gap-2">
-                      <FiCheckCircle className="text-teal-400" size={16} />
-                      <span>{skill}</span>
+                    { icon: FiShield, title: "ICS/OT Security", desc: "Protecting critical infrastructure" },
+                    { icon: FiCode, title: "Detection Engineering", desc: "Building SIEM rules and alerts" },
+                    { icon: FiBriefcase, title: "Incident Response", desc: "Triage and investigation" },
+                    { icon: FiAward, title: "Continuous Learning", desc: "Always expanding my skillset" },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-3">
+                      <item.icon className="text-teal-400 mt-1" size={20} />
+                      <div>
+                        <p className="font-medium">{item.title}</p>
+                        <p className="text-sm text-slate-400">{item.desc}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -677,28 +766,13 @@ export function PortfolioSite() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="border border-teal-900/30 rounded-lg bg-slate-900/30 p-6"
+                className="border border-blue-900/30 rounded-lg bg-blue-950/10 p-6"
               >
-                <h3 className="text-xl font-semibold mb-4">Contact</h3>
-                <div className="space-y-2">
-                  <p className="flex items-center gap-2">
-                    <FiMail className="text-teal-400" size={16} />
-                    <a href="mailto:tom@jogn.co.uk" className="text-teal-300 hover:text-teal-200">
-                      tom@jogn.co.uk
-                    </a>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    <FiLinkedin className="text-teal-400" size={16} />
-                    <a
-                      href="https://www.linkedin.com/in/tom-b-a81271132"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal-300 hover:text-teal-200"
-                    >
-                      LinkedIn Profile
-                    </a>
-                  </p>
-                </div>
+                <h3 className="text-lg font-semibold mb-3">💡 Customize This Section</h3>
+                <p className="text-sm text-slate-300">
+                  This "About Me" section is a placeholder. Replace it with your actual background, experience,
+                  goals, and what makes you unique. This is your chance to tell your story!
+                </p>
               </motion.div>
             </div>
           )}
