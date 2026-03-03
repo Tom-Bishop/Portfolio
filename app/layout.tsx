@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jogn | Social Media Marketing Portfolio",
-  description: "Modern, bright, and creative portfolio showcasing social media marketing projects, templates, and campaign examples.",
+  title: "Neave Heaton | Senior Marketing Officer",
+  description: "Strategic marketing portfolio showcasing integrated campaigns for arts, heritage, and educational institutions. Senior Marketing Officer specializing in cultural marketing and audience engagement.",
 };
 
 export default function RootLayout({
