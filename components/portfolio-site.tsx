@@ -348,7 +348,7 @@ export function PortfolioSite() {
           <div className="mt-4 overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-2">
             <iframe
               title="Instagram Reel Embed"
-              src="https://www.instagram.com/reel/C9example/embed"
+              src="https://www.instagram.com/reel/DSK8bhgDNFf/embed"
               className="h-[560px] w-full rounded-xl"
               loading="lazy"
               allowTransparency
