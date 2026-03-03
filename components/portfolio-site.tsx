@@ -178,7 +178,7 @@ export function PortfolioSite() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 via-blue-50 to-white text-slate-900">
+    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-[#03111b] to-slate-900 text-slate-100">
       <section className="mx-auto max-w-6xl px-6 py-20 sm:px-10 lg:px-12">
         <motion.nav
           initial="hidden"
@@ -187,9 +187,9 @@ export function PortfolioSite() {
           transition={{ duration: 0.45 }}
           className="mb-16 flex flex-wrap items-center justify-between gap-6"
         >
-          <p className="text-lg font-semibold tracking-tight">Tom Baptist · Apprentice Cyber Security Engineer</p>
+          <p className="text-lg font-semibold tracking-tight text-cyan-300">Tom Baptist · Apprentice Cyber Security Engineer</p>
           <div className="flex items-center gap-4 text-xl">
-            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/tom-b-a81271132" target="_blank" rel="noopener noreferrer" className="transition hover:opacity-70">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/tom-b-a81271132" target="_blank" rel="noopener noreferrer" className="text-slate-200 transition hover:text-cyan-300">
               <FiLinkedin />
             </a>
           </div>
@@ -203,20 +203,20 @@ export function PortfolioSite() {
           className="grid gap-10 lg:grid-cols-[1.3fr_1fr]"
         >
           <div>
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-4 py-1 text-sm text-amber-700">
-              <FiStar /> ICS & OT Security Focus
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-950/30 px-4 py-1 text-sm text-cyan-300">
+              <FiStar /> OT Security | ICS Resilience | Defensive Operations
             </p>
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
-              Securing critical systems with practical, detail-driven cyber defence.
+              OT-first cyber defence for critical infrastructure environments.
             </h1>
-            <p className="mt-6 max-w-2xl text-base text-slate-700 sm:text-lg">
-              I am an Apprentice Cyber Security Engineer at Tekgem UK LTD, focused on Industrial Control Systems (ICS) and Operational Technology (OT) security, network defence, and continuous improvement.
+            <p className="mt-6 max-w-2xl text-base text-slate-300 sm:text-lg">
+              I am an Apprentice Cyber Security Engineer at Tekgem UK LTD, focused on Industrial Control Systems and Operational Technology security, with hands-on work across asset visibility, monitoring, vulnerability tracking, and operational hardening.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#portfolio" className="rounded-full bg-indigo-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-indigo-800">
+              <a href="#portfolio" className="rounded-full border border-cyan-400/40 bg-cyan-500/20 px-6 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-500/30">
                 View Projects
               </a>
-              <a href="#contact" className="rounded-full border border-amber-300 bg-white px-6 py-3 text-sm font-medium text-amber-800 transition hover:bg-amber-50">
+              <a href="#contact" className="rounded-full border border-emerald-400/40 bg-emerald-500/10 px-6 py-3 text-sm font-medium text-emerald-200 transition hover:bg-emerald-500/20">
                 Contact Me
               </a>
             </div>
@@ -234,10 +234,10 @@ export function PortfolioSite() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: 0.2 + index * 0.08 }}
-                className="rounded-2xl border border-white bg-white/90 p-5 shadow-sm"
+                className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_30px_rgba(34,211,238,0.06)]"
               >
-                <p className="text-2xl font-semibold text-indigo-700">{value}</p>
-                <p className="mt-1 text-sm text-slate-600">{label}</p>
+                <p className="text-2xl font-semibold text-cyan-300">{value}</p>
+                <p className="mt-1 text-sm text-slate-300">{label}</p>
               </motion.div>
             ))}
           </div>
@@ -247,7 +247,7 @@ export function PortfolioSite() {
       <section id="portfolio" className="mx-auto max-w-6xl px-6 py-14 sm:px-10 lg:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
           <h2 className="text-3xl font-semibold tracking-tight">Portfolio Highlights</h2>
-          <p className="mt-3 text-slate-700">Selected cyber security work focused on ICS/OT resilience, network defence, governance, and practical lab-based development.</p>
+          <p className="mt-3 text-slate-300">Selected cyber security work focused on OT reliability, industrial risk reduction, and defence-in-depth execution.</p>
 
           <div className="mt-6 flex flex-wrap gap-2">
             {categories.map((category) => (
@@ -257,8 +257,8 @@ export function PortfolioSite() {
                 onClick={() => setActiveCategory(category)}
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   activeCategory === category
-                    ? "bg-indigo-700 text-white"
-                    : "border border-indigo-200 bg-white text-indigo-800 hover:bg-indigo-50"
+                    ? "border border-cyan-400/40 bg-cyan-500/20 text-cyan-100"
+                    : "border border-slate-600 bg-slate-900/60 text-slate-300 hover:border-cyan-500/40 hover:text-cyan-200"
                 }`}
               >
                 {category}
@@ -274,12 +274,12 @@ export function PortfolioSite() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.35, delay: index * 0.05 }}
-                className="rounded-2xl border border-white bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)]"
               >
-                <p className="text-xs font-medium uppercase tracking-wide text-amber-700">{item.category}</p>
-                <h3 className="mt-2 text-lg font-semibold text-slate-900">{item.project}</h3>
-                <p className="mt-3 text-sm text-slate-700">{item.summary}</p>
-                <p className="mt-5 text-sm font-medium text-indigo-700">Result: {item.result}</p>
+                <p className="text-xs font-medium uppercase tracking-wide text-cyan-300">{item.category}</p>
+                <h3 className="mt-2 text-lg font-semibold text-slate-100">{item.project}</h3>
+                <p className="mt-3 text-sm text-slate-300">{item.summary}</p>
+                <p className="mt-5 text-sm font-medium text-emerald-300">Result: {item.result}</p>
               </motion.article>
             ))}
           </div>
@@ -297,13 +297,13 @@ export function PortfolioSite() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.35, delay: index * 0.08 }}
-                className="rounded-2xl border border-white bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)]"
               >
-                <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-indigo-700">
+                <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-cyan-300">
                   <FiFileText /> {template.format}
                 </p>
-                <h3 className="mt-2 text-lg font-semibold text-slate-900">{template.title}</h3>
-                <p className="mt-2 text-sm text-slate-700">{template.description}</p>
+                <h3 className="mt-2 text-lg font-semibold text-slate-100">{template.title}</h3>
+                <p className="mt-2 text-sm text-slate-300">{template.description}</p>
               </motion.article>
             ))}
           </div>
@@ -313,11 +313,11 @@ export function PortfolioSite() {
           <h2 className="text-3xl font-semibold tracking-tight">Use Cases</h2>
           <div className="mt-6 space-y-3">
             {examples.map((example) => (
-              <article key={example.title} className="rounded-2xl border border-white bg-white p-5 shadow-sm">
-                <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-amber-700">
+              <article key={example.title} className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)]">
+                <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
                   <FiLayers /> {example.title}
                 </p>
-                <p className="mt-2 text-base text-slate-800">{example.sample}</p>
+                <p className="mt-2 text-base text-slate-200">{example.sample}</p>
               </article>
             ))}
           </div>
@@ -331,7 +331,7 @@ export function PortfolioSite() {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInUp}
           transition={{ duration: 0.45 }}
-          className="rounded-3xl bg-indigo-900 p-7 text-indigo-50"
+          className="rounded-3xl border border-cyan-500/20 bg-slate-900/80 p-7 text-slate-100 shadow-[0_0_28px_rgba(34,211,238,0.08)]"
         >
           <h2 className="text-2xl font-semibold tracking-tight">How I Approach Security</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-3">
@@ -352,11 +352,11 @@ export function PortfolioSite() {
                 text: "Track findings, triage alerts, and feed lessons learned into stronger prevention and response workflows.",
               },
             ].map((step) => (
-              <article key={step.title} className="rounded-2xl border border-indigo-700 p-4">
-                <p className="inline-flex items-center gap-2 text-sm font-semibold text-amber-300">
+              <article key={step.title} className="rounded-2xl border border-cyan-500/20 bg-slate-950/40 p-4">
+                <p className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
                   <step.icon /> {step.title}
                 </p>
-                <p className="mt-2 text-sm text-indigo-100">{step.text}</p>
+                <p className="mt-2 text-sm text-slate-300">{step.text}</p>
               </article>
             ))}
           </div>
@@ -374,10 +374,10 @@ export function PortfolioSite() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.35, delay: index * 0.08 }}
-                className="rounded-2xl border border-white bg-white p-5 shadow-sm"
+                className="rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)]"
               >
-                <p className="text-sm text-slate-800">"{testimonial.quote}"</p>
-                <footer className="mt-4 text-sm font-medium text-slate-700">
+                <p className="text-sm text-slate-200">"{testimonial.quote}"</p>
+                <footer className="mt-4 text-sm font-medium text-slate-300">
                   {testimonial.name} · {testimonial.role}
                 </footer>
               </motion.blockquote>
@@ -390,10 +390,10 @@ export function PortfolioSite() {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeInUp} transition={{ duration: 0.45 }}>
             <h2 className="text-3xl font-semibold tracking-tight">Open to Cyber Opportunities</h2>
-            <p className="mt-3 max-w-xl text-slate-700">
+            <p className="mt-3 max-w-xl text-slate-300">
               I am open to cyber security opportunities and collaborations, especially roles involving ICS/OT security, network defence, and operational resilience.
             </p>
-            <a href="mailto:tom@jogn.co.uk" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-indigo-800 hover:opacity-80">
+            <a href="mailto:tom@jogn.co.uk" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:opacity-80">
               <FiMail /> tom@jogn.co.uk
             </a>
           </motion.div>
@@ -405,16 +405,16 @@ export function PortfolioSite() {
             variants={fadeInUp}
             transition={{ duration: 0.45, delay: 0.05 }}
             onSubmit={handleContactSubmit}
-            className="space-y-3 rounded-2xl border border-white bg-white p-5 shadow-sm"
+            className="space-y-3 rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)]"
           >
-            <input name="name" required placeholder="Name" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <input name="email" type="email" required placeholder="Email" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <input name="projectType" required placeholder="Role / Project Type" className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <textarea name="message" required placeholder="Tell me about the role, project, or security challenge" rows={4} className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300" />
-            <button type="submit" disabled={contactStatus === "sending"} className="w-full rounded-full bg-indigo-700 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-60">
+            <input name="name" required placeholder="Name" className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50" />
+            <input name="email" type="email" required placeholder="Email" className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50" />
+            <input name="projectType" required placeholder="Role / Project Type" className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50" />
+            <textarea name="message" required placeholder="Tell me about the role, project, or security challenge" rows={4} className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50" />
+            <button type="submit" disabled={contactStatus === "sending"} className="w-full rounded-full border border-cyan-400/40 bg-cyan-500/20 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:bg-cyan-500/30 disabled:cursor-not-allowed disabled:opacity-60">
               {contactStatus === "sending" ? "Sending..." : "Send Message"}
             </button>
-            {contactStatus === "sent" && <p className="text-sm text-slate-700">Thank you — I'll be in touch.</p>}
+            {contactStatus === "sent" && <p className="text-sm text-emerald-300">Thank you — I'll be in touch.</p>}
             {contactStatus === "error" && <p className="text-sm text-red-600">Something went wrong. Please try again.</p>}
           </motion.form>
         </div>
@@ -426,23 +426,23 @@ export function PortfolioSite() {
           variants={fadeInUp}
           transition={{ duration: 0.45, delay: 0.1 }}
           onSubmit={handleNewsletterSubmit}
-          className="mt-8 flex flex-col gap-3 rounded-2xl border border-white bg-white p-5 shadow-sm sm:flex-row"
+          className="mt-8 flex flex-col gap-3 rounded-2xl border border-cyan-500/20 bg-slate-900/70 p-5 shadow-[0_0_24px_rgba(6,182,212,0.06)] sm:flex-row"
         >
           <input
             name="newsletterEmail"
             type="email"
             required
             placeholder="Enter email for cyber security notes and updates"
-            className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-indigo-300"
+            className="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-cyan-400/50"
           />
           <button
             type="submit"
             disabled={newsletterStatus === "sending"}
-            className="rounded-full bg-amber-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rounded-full border border-emerald-400/40 bg-emerald-500/20 px-5 py-3 text-sm font-medium text-emerald-100 transition hover:bg-emerald-500/30 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {newsletterStatus === "sending" ? "Subscribing..." : "Subscribe"}
           </button>
-          {newsletterStatus === "sent" && <p className="self-center text-sm text-slate-700">Welcome.</p>}
+          {newsletterStatus === "sent" && <p className="self-center text-sm text-emerald-300">Welcome.</p>}
           {newsletterStatus === "error" && <p className="self-center text-sm text-red-600">Please try again.</p>}
         </motion.form>
       </section>
